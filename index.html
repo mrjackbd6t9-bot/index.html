@@ -7,7 +7,6 @@
 <title>Football Team</title>
 
 <style>
-
 * {
     margin: 0;
     padding: 0;
@@ -19,8 +18,6 @@ body {
     background: #eef1f5;
     color: #222;
 }
-
-/* Header */
 
 .header {
     background: #111827;
@@ -39,15 +36,11 @@ body {
     opacity: 0.8;
 }
 
-/* Main */
-
 .container {
     width: 95%;
     max-width: 1100px;
     margin: 25px auto;
 }
-
-/* Search */
 
 .search-box {
     margin-bottom: 25px;
@@ -66,15 +59,11 @@ body {
     border-color: #111827;
 }
 
-/* Player Grid */
-
 .players {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 20px;
 }
-
-/* Player Card */
 
 .player-card {
     background: white;
@@ -82,14 +71,7 @@ body {
     padding: 20px;
     text-align: center;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    transition: 0.2s;
 }
-
-.player-card:hover {
-    transform: translateY(-4px);
-}
-
-/* Player Image */
 
 .player-photo {
     width: 140px;
@@ -100,14 +82,10 @@ body {
     margin-bottom: 12px;
 }
 
-/* Name */
-
 .player-name {
     font-size: 21px;
     margin-bottom: 15px;
 }
-
-/* Information */
 
 .info {
     text-align: left;
@@ -125,17 +103,18 @@ body {
     width: 90px;
 }
 
-/* Not Found */
+.info a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+}
 
 .not-found {
     display: none;
     text-align: center;
     margin-top: 30px;
     color: #777;
-    font-size: 17px;
 }
-
-/* Mobile */
 
 @media (max-width: 500px) {
 
@@ -152,70 +131,36 @@ body {
         width: 100%;
         margin: auto;
     }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- HEADER -->
-
 <header class="header">
-
     <h1>⚽ Football Team</h1>
-
     <p>Total Players: 14</p>
-
 </header>
-
-
-<!-- MAIN -->
 
 <main class="container">
 
-
-    <!-- SEARCH -->
-
     <div class="search-box">
-
         <input
             type="text"
             id="searchInput"
             placeholder="🔎 Search player name..."
         >
-
     </div>
-
-
-    <!-- PLAYERS -->
 
     <div class="players" id="playersContainer"></div>
 
-
-    <!-- NOT FOUND -->
-
     <div class="not-found" id="notFound">
-
         Player not found.
-
     </div>
-
 
 </main>
 
-
-
 <script>
-
-
-/* =========================================
-   PLAYER DATA
-   ========================================= */
-
 
 const players = [
 
@@ -334,12 +279,6 @@ const players = [
 ];
 
 
-
-/* =========================================
-   GET HTML ELEMENTS
-   ========================================= */
-
-
 const playersContainer =
     document.getElementById("playersContainer");
 
@@ -350,39 +289,22 @@ const notFound =
     document.getElementById("notFound");
 
 
-
-/* =========================================
-   DISPLAY PLAYERS
-   ========================================= */
-
-
 function displayPlayers(playerList) {
 
     playersContainer.innerHTML = "";
 
-
-    /* No player */
-
     if (playerList.length === 0) {
-
         notFound.style.display = "block";
-
         return;
     }
 
-
     notFound.style.display = "none";
 
-
-    /* Create cards */
-
     playerList.forEach(player => {
-
 
         const card = document.createElement("div");
 
         card.className = "player-card";
-
 
         card.innerHTML = `
 
@@ -400,7 +322,9 @@ function displayPlayers(playerList) {
 
                 <p>
                     <strong>📱 Phone:</strong>
-                    ${player.phone}
+                    <a href="tel:${player.phone}">
+                        ${player.phone}
+                    </a>
                 </p>
 
                 <p>
@@ -414,78 +338,32 @@ function displayPlayers(playerList) {
                 </p>
 
             </div>
-
         `;
-
 
         playersContainer.appendChild(card);
 
     });
-
 }
-
-
-
-/* =========================================
-   SEARCH FUNCTION
-   ========================================= */
 
 
 searchInput.addEventListener("input", function() {
 
-
     const searchText =
         this.value.toLowerCase().trim();
 
-
     const filteredPlayers =
         players.filter(player =>
-
-            player.name
-                .toLowerCase()
-                .includes(searchText)
-
+            player.name.toLowerCase().includes(searchText)
         );
-
 
     displayPlayers(filteredPlayers);
 
 });
 
 
-
-/* =========================================
-   LOAD ALL PLAYERS
-   ========================================= */
-
-
 displayPlayers(players);
-
 
 </script>
 
-
 </body>
 </html>
-
-GitHub folder structure
-
-football-team/
-│
-├── index.html
-│
-└── images/
-    ├── player1.jpg
-    ├── player2.jpg
-    ├── player3.jpg
-    ├── player4.jpg
-    ├── player5.jpg
-    ├── player6.jpg
-    ├── player7.jpg
-    ├── player8.jpg
-    ├── player9.jpg
-    ├── player10.jpg
-    ├── player11.jpg
-    ├── player12.jpg
-    ├── player13.jpg
-    └── player14.jpg
